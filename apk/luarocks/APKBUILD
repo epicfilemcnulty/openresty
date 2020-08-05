@@ -1,7 +1,7 @@
 # Contributor: Vladimir Zorin <vladimir@deviant.guru>
 # Maintainer: Vladimir Zorin <vladimir@deviant.guru>
 pkgname=luarocks
-pkgver=2.4.2
+pkgver=3.3.1
 pkgrel=1
 pkgdesc="Deployment and management system for Lua modules"
 url="http://www.luarocks.org/"
@@ -33,9 +33,6 @@ build() {
         --sysconfdir=/etc/luarocks \
         --with-lua=/usr/openresty/luajit \
         --with-lua-include=/usr/openresty/luajit/include/luajit-2.1 \
-        --lua-suffix=jit-2.1.0-beta3 \
-        --with-downloader=curl \
-        --versioned-rocks-dir \
         || return 1
     make || return 1
 }
@@ -45,4 +42,3 @@ package() {
     cd "$_builddir"
     make DESTDIR="$pkgdir" install || return 1
 }
-

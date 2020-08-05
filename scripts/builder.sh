@@ -23,3 +23,4 @@ ERROR_CLEANUP="deps"
 EOF
 
 abuild-keygen -a -n -i -q
+cp /root/.abuild/vladimir@deviant.guru-*.rsa.pub /etc/apk/keys/ 

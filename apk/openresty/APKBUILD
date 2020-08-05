@@ -2,7 +2,7 @@
 # Contributor: Vladimir Zorin <vladimir@deviant.guru>
 
 pkgname=openresty
-pkgver=1.15.8.2
+pkgver=1.17.8.2
 pkgrel=1
 pkgdesc="Nginx with Lua module, bells & whistles"
 url="http://openresty.org"
