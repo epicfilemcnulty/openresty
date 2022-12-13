@@ -1,0 +1,44 @@
+---
+kind: pipeline
+type: kubernetes
+name: build-tagged-image
+
+steps:
+  - name: publish  
+    image: plugins/kaniko:latest-kaniko1.9.1
+    settings:
+      repo: git.deviant.guru/${DRONE_REPO}
+      registry: git.deviant.guru
+      password: 
+        from_secret: registry_pass
+      username: ci
+      enable_cache: true
+      cache_repo: git.deviant.guru/${DRONE_REPO} 
+      tags: ${DRONE_TAG}
+
+trigger:
+  event:
+  - tag
+---
+kind: pipeline
+type: kubernetes
+name: build-latest-image
+
+steps:
+  - name: publish  
+    image: plugins/kaniko:latest-kaniko1.9.1
+    settings:
+      repo: git.deviant.guru/${DRONE_REPO}
+      registry: git.deviant.guru
+      password: 
+        from_secret: registry_pass
+      username: ci
+      enable_cache: true
+      cache_repo: git.deviant.guru/${DRONE_REPO} 
+      tags: master,latest
+
+trigger:
+  branch:
+  - master
+  event:
+  - push

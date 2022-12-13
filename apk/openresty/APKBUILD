@@ -1,0 +1,67 @@
+# Maintainer: Vladimir Zorin <vladimir@deviant.guru>
+# Contributor: Vladimir Zorin <vladimir@deviant.guru>
+
+pkgname=openresty
+pkgver=1.21.4.1
+pkgrel=1
+pkgdesc="Nginx with Lua module, bells & whistles"
+url="http://openresty.org"
+arch="all"
+license="BSD"
+pkgusers="nginx"
+pkggroups="nginx"
+install="$pkgname.pre-install"
+depends="!nginx !nginx-lua"
+makedepends="pcre-dev perl openssl-dev zlib-dev"
+source="https://openresty.org/download/$pkgname-$pkgver.tar.gz
+	$pkgname.nginx.conf
+	$pkgname.mime.types
+"
+
+_builddir="$srcdir"/$pkgname-$pkgver
+
+prepare() {
+	cd "$_builddir"
+	for i in $source; do
+		case $i in
+		*.patch) msg $i; patch -p1 -i "$srcdir"/$i || return 1;;
+		esac
+	done
+}
+
+build() {
+    cd "$_builddir"
+	./configure \
+    --prefix=/usr/openresty \
+    --user=nginx \
+    --group=nginx \
+    --without-http_echo_module \
+    --without-http_xss_module \
+    --without-http_coolkit_module \
+    --without-http_form_input_module \
+    --without-http_encrypted_session_module \
+    --without-http_srcache_module \
+    --without-http_redis_module \
+    --without-http_redis2_module \
+    --without-http_rds_csv_module \
+    --without-http_uwsgi_module \
+    --without-http_scgi_module \
+    --without-http_fastcgi_module \
+    --with-luajit \
+    --with-http_realip_module \
+    --with-http_stub_status_module \
+    --with-http_gzip_static_module \
+    --with-http_ssl_module \
+    --with-http_auth_request_module \
+    --with-http_v2_module || return 1
+	make || return 1
+}
+
+package() {
+	cd "$_builddir"
+	make DESTDIR="$pkgdir" install || return 1
+
+	install -Dm644 "$srcdir"/$pkgname.mime.types "$pkgdir"/etc/nginx/mime.types
+	install -Dm644 "$srcdir"/$pkgname.nginx.conf "$pkgdir"/etc/nginx/nginx.conf
+}
+

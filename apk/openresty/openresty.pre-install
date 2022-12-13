@@ -1,0 +1,13 @@
+#!/bin/sh
+
+addgroup -S nginx 2>/dev/null
+adduser -S -D -H -h /var/lib/nginx -s /sbin/nologin -G nginx -g nginx nginx 2>/dev/null
+
+mkdir /var/cache/nginx
+mkdir -p /var/log/nginx
+
+mkdir -p /etc/nginx/conf.d
+mkdir -p /etc/nginx/vhosts
+chown -R nginx:nginx /var/cache/nginx
+chown -R nginx:nginx /var/log/nginx
+exit 0
