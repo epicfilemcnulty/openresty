@@ -4,7 +4,7 @@
 
 #### Description
 
-Dockerfile + APKBUILD files to build an opinionated openresty docker image.
+Dockerfile + APKBUILD files to build an opinionated openresty container image.
 Openresty is built from sources (see [apk](apk) directory).
 For the list of included/excluded nginx modules, see [openresty APKBUILD file](apk/openresty/APKBUILD).
 The resulting image will also include the following luarocks modules:
@@ -12,7 +12,7 @@ The resulting image will also include the following luarocks modules:
 * inspect
 * pgmoon
 * libcidr-ffi
-* [redstats](https://github.com/epicfilemcnulty/lua-redis-stats)
+* [redstats](src/redstats.lua)
 * lunamark
 * lua-resty-http
 * lua-resty-session

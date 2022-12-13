@@ -22,7 +22,7 @@ COPY --from=lilu /lilu /usr/local/bin/lilu
 COPY scripts/openresty.sh /root/
 
 RUN /root/openresty.sh && rm /root/openresty.sh
-COPY /src/dns.lua /usr/openresty/luajit/share/lua/5.1/
+COPY /src/*.lua /usr/openresty/luajit/share/lua/5.1/
 COPY supervisor.lua /
 
 ENTRYPOINT ["/supervisor.lua"]
