@@ -14,11 +14,10 @@ cd libcidr-1.2.3
 make
 make install
 
-${LUAROCKS} install --server=https://luarocks.org/manifests/epicfilemcnulty redstats 1.0.4-1
-${LUAROCKS} install --server=https://luarocks.org/manifests/epicfilemcnulty lunamark 0.5.3-1
 ${LUAROCKS} install libcidr-ffi
 ${LUAROCKS} install inspect 3.1.3-0
 ${LUAROCKS} install pgmoon 1.15.0-1
+${LUAROCKS} install djot
 ${LUAROCKS} install lua-resty-http 0.17.0.beta.1-0
 ${LUAROCKS} install lua-resty-session 3.10-1
 ${LUAROCKS} install lua-resty-jwt 0.2.3-0

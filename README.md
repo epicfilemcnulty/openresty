@@ -1,19 +1,20 @@
 ### [Openresty](http://openresty.org/en/) alpine-based docker image with bells & whistles
 
 [![Build Status](https://sisyphus.deviant.guru/api/badges/images/openresty/status.svg)](https://sisyphus.deviant.guru/images/openresty)
+[![Release](https://img.shields.io/badge/dynamic/json.svg?label=release&url=https://git.deviant.guru/api/v1/repos/images/openresty/releases&query=$[0].tag_name)](https://git.deviant.guru/images/openresty/releases)
 
 #### Description
 
 Dockerfile + APKBUILD files to build an opinionated openresty container image.
 Openresty is built from sources (see [apk](apk) directory).
 For the list of included/excluded nginx modules, see [openresty APKBUILD file](apk/openresty/APKBUILD).
-The resulting image will also include the following luarocks modules:
+The resulting image will also include the following Lua modules:
 
 * inspect
 * pgmoon
 * libcidr-ffi
 * [redstats](src/redstats.lua)
-* lunamark
+* [djot](https://djot.net/)
 * lua-resty-http
 * lua-resty-session
 * lua-resty-jwt
